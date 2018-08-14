@@ -1,6 +1,8 @@
 import React, {Component, Fragment} from 'react';
 import {Provider} from 'react-redux';
+import {BrowserRouter, Link, Route} from 'react-router-dom';
 import createAppstore from '../lib/store';
+import Dashboard from './dashboard';
 
 const store = createAppstore();
 
@@ -8,13 +10,20 @@ export default class App extends Component {
 
     render() {
         return(
-            <Provider store={store}>
-            <Fragment>
-                <h1>Catagory app</h1>
-                {/* <CatagoryForm/>
-                <CatagoryList/> */}
-            </Fragment>
-            </Provider>
-        )
+            <div>
+              <Provider store={store}>
+                <BrowserRouter>
+                  <Fragment>
+                    <ul>
+                      <li><Link to="/">Dashboard</Link></li>
+                    </ul>
+                    <div>
+                      <Route exact path="/" component={Dashboard}/>
+                    </div>
+                  </Fragment>
+                </BrowserRouter>
+              </Provider>
+            </div>
+        );
     }
 }
